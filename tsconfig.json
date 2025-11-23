@@ -1,23 +1,17 @@
 {
   "compilerOptions": {
-    "module": "commonjs",
+    "module": "Node16",
     "target": "ES2021",
-    "lib": [
-      "ES2021"
-    ],
+    "lib": ["ES2021", "DOM"],
     "outDir": "out",
     "rootDir": "src",
     "sourceMap": true,
     "strict": true,
     "esModuleInterop": true,
-    "moduleResolution": "node",
+    "moduleResolution": "node16",
     "resolveJsonModule": true,
-    "types": [
-      "vscode",
-      "node"
-    ]
+    "types": ["vscode", "node"],
+    "skipLibCheck": true
   },
-  "include": [
-    "src"
-  ]
+  "include": ["src"]
 }

@@ -311,26 +311,30 @@ function parseSteps(raw: string): MacroStep[] {
 async function collectSteps(initialSteps: MacroStep[] = []): Promise<MacroStep[] | undefined> {
   let steps = [...initialSteps];
   while (true) {
-    const items: StepQuickPickItem[] = [
-      ...steps.map((step, index) => ({
+  const items: StepQuickPickItem[] = [
+    ...steps.map(
+      (step, index): StepQuickPickItem => ({
         label: `${index + 1}. ${step.find} -> ${step.replace}`,
         description: describeStep(step),
         action: 'edit',
         index
-      })),
-      ...steps.map((step, index) => ({
+      })
+    ),
+    ...steps.map(
+      (step, index): StepQuickPickItem => ({
         label: `↕️ 並べ替え: ${index + 1}. ${step.find}`,
         description: '順序を変更',
         action: 'reorder',
         index
-      })),
-      { label: '➕ ステップを追加', action: 'add' },
-      {
-        label: '✅ 完了',
-        description: steps.length ? `${steps.length} step` : 'ステップなし',
-        action: 'done'
-      }
-    ];
+      })
+    ),
+    { label: '➕ ステップを追加', action: 'add' } as StepQuickPickItem,
+    {
+      label: '✅ 完了',
+      description: steps.length ? `${steps.length} step` : 'ステップなし',
+      action: 'done'
+    } as StepQuickPickItem
+  ];
 
     const picked = await vscode.window.showQuickPick(items, {
       placeHolder: 'マクロのステップを追加/編集/削除'

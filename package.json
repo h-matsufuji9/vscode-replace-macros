@@ -12,7 +12,7 @@
     "vscode": "^1.82.0"
   },
   "categories": [
-    "Productivity"
+    "Other"
   ],
   "keywords": [
     "macro",
@@ -21,7 +21,7 @@
     "text",
     "automation"
   ],
-  "icon": "media/icon.svg",
+  "icon": "media/icon.png",
   "activationEvents": [
     "onCommand:vsc-macros.runQuickReplace",
     "onCommand:vsc-macros.createMacro",
@@ -39,7 +39,7 @@
         {
           "id": "vsc-macros",
           "title": "Macros",
-          "icon": "media/icon.svg"
+          "icon": "media/icon.png"
         }
       ]
     },

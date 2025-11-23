@@ -1,0 +1,10 @@
+**/.git*
+.vscode/**
+node_modules/**
+src/**
+tsconfig.json
+vitest.config.ts
+**/*.test.ts
+**/*.spec.ts
+.gitignore
+README.md

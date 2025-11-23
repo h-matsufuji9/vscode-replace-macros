@@ -1,0 +1,135 @@
+{
+  "name": "vscode-replace-macros",
+  "displayName": "ReplaceMacros for VS Code",
+  "description": "Run chained string replacements as one macro action. Save, edit, reorder steps, and import/export via JSON.",
+  "version": "0.1.1",
+  "publisher": "",
+  "author": "h-matsufuji9",
+  "repository": "https://github.com/h-matsufuji9/vscode-replace-macros",
+  "homepage": "https://github.com/h-matsufuji9/vscode-replace-macros",
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.82.0"
+  },
+  "categories": [
+    "Productivity"
+  ],
+  "keywords": [
+    "macro",
+    "replace",
+    "regex",
+    "text",
+    "automation"
+  ],
+  "icon": "media/icon.svg",
+  "activationEvents": [
+    "onCommand:vsc-macros.runQuickReplace",
+    "onCommand:vsc-macros.createMacro",
+    "onCommand:vsc-macros.applyMacro",
+    "onCommand:vsc-macros.deleteMacro",
+    "onCommand:vsc-macros.importMacros",
+    "onCommand:vsc-macros.exportMacros",
+    "onCommand:vsc-macros.editMacro",
+    "onView:vsc-macros.list"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "vsc-macros",
+          "title": "Macros",
+          "icon": "media/icon.svg"
+        }
+      ]
+    },
+    "views": {
+      "vsc-macros": [
+        {
+          "id": "vsc-macros.list",
+          "name": "Macros"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "vsc-macros.runQuickReplace",
+        "title": "Macros: Run Quick Multi Replace"
+      },
+      {
+        "command": "vsc-macros.createMacro",
+        "title": "Macros: Create Macro From Replacements"
+      },
+      {
+        "command": "vsc-macros.applyMacro",
+        "title": "Macros: Apply Saved Macro"
+      },
+      {
+        "command": "vsc-macros.deleteMacro",
+        "title": "Macros: Delete Saved Macro"
+      },
+      {
+        "command": "vsc-macros.importMacros",
+        "title": "Macros: Import Macros From JSON"
+      },
+      {
+        "command": "vsc-macros.exportMacros",
+        "title": "Macros: Export Macros To JSON"
+      },
+      {
+        "command": "vsc-macros.editMacro",
+        "title": "Macros: Edit Saved Macro"
+      }
+    ],
+    "menus": {
+      "view/title": [
+        {
+          "command": "vsc-macros.createMacro",
+          "when": "view == vsc-macros.list",
+          "group": "navigation"
+        },
+        {
+          "command": "vsc-macros.importMacros",
+          "when": "view == vsc-macros.list",
+          "group": "navigation"
+        },
+        {
+          "command": "vsc-macros.exportMacros",
+          "when": "view == vsc-macros.list",
+          "group": "navigation"
+        }
+      ],
+      "view/item/context": [
+        {
+          "command": "vsc-macros.applyMacro",
+          "when": "view == vsc-macros.list && viewItem == macroItem",
+          "group": "inline"
+        },
+        {
+          "command": "vsc-macros.editMacro",
+          "when": "view == vsc-macros.list && viewItem == macroItem",
+          "group": "inline"
+        },
+        {
+          "command": "vsc-macros.deleteMacro",
+          "when": "view == vsc-macros.list && viewItem == macroItem",
+          "group": "inline"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "test": "vitest run",
+    "package": "vsce package"
+  },
+  "devDependencies": {
+    "@types/node": "^18.18.0",
+    "@types/vscode": "^1.82.0",
+    "typescript": "^5.3.3",
+    "@vscode/vsce": "^2.23.0",
+    "vitest": "^1.4.0"
+  },
+  "dependencies": {}
+}

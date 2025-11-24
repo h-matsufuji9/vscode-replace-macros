@@ -58,27 +58,33 @@
       },
       {
         "command": "vsc-macros.createMacro",
-        "title": "Macros: Create Macro From Replacements"
+        "title": "Macros: Create Macro From Replacements",
+        "icon": "$(add)"
       },
       {
         "command": "vsc-macros.applyMacro",
-        "title": "Macros: Apply Saved Macro"
+        "title": "Macros: Apply Saved Macro",
+        "icon": "$(play)"
       },
       {
         "command": "vsc-macros.deleteMacro",
-        "title": "Macros: Delete Saved Macro"
+        "title": "Macros: Delete Saved Macro",
+        "icon": "$(trash)"
       },
       {
         "command": "vsc-macros.importMacros",
-        "title": "Macros: Import Macros From JSON"
+        "title": "Macros: Import Macros From JSON",
+        "icon": "$(cloud-download)"
       },
       {
         "command": "vsc-macros.exportMacros",
-        "title": "Macros: Export Macros To JSON"
+        "title": "Macros: Export Macros To JSON",
+        "icon": "$(cloud-upload)"
       },
       {
         "command": "vsc-macros.editMacro",
-        "title": "Macros: Edit Saved Macro"
+        "title": "Macros: Edit Saved Macro",
+        "icon": "$(edit)"
       }
     ],
     "menus": {
@@ -86,34 +92,40 @@
         {
           "command": "vsc-macros.createMacro",
           "when": "view == vsc-macros.list",
-          "group": "navigation"
+          "group": "navigation",
+          "icon": "$(add)"
         },
         {
           "command": "vsc-macros.importMacros",
           "when": "view == vsc-macros.list",
-          "group": "navigation"
+          "group": "navigation",
+          "icon": "$(cloud-download)"
         },
         {
           "command": "vsc-macros.exportMacros",
           "when": "view == vsc-macros.list",
-          "group": "navigation"
+          "group": "navigation",
+          "icon": "$(cloud-upload)"
         }
       ],
       "view/item/context": [
         {
           "command": "vsc-macros.applyMacro",
           "when": "view == vsc-macros.list && viewItem == macroItem",
-          "group": "inline"
+          "group": "inline",
+          "icon": "$(play)"
         },
         {
           "command": "vsc-macros.editMacro",
           "when": "view == vsc-macros.list && viewItem == macroItem",
-          "group": "inline"
+          "group": "inline",
+          "icon": "$(edit)"
         },
         {
           "command": "vsc-macros.deleteMacro",
           "when": "view == vsc-macros.list && viewItem == macroItem",
-          "group": "inline"
+          "group": "inline",
+          "icon": "$(trash)"
         }
       ]
     }

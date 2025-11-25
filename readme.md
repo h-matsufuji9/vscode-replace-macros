@@ -8,9 +8,6 @@
 - マクロを JSON 形式でインポート/エクスポート
 - ステップの並べ替えやメモを付けて整理可能
 
-## 公開用メタデータ
-`package.json` の `publisher`/`author`/`repository`/`homepage` は自身の情報に置き換えてください。ライセンスはデフォルトで MIT になっています。
-
 ## コマンド
 - `Macros: Run Quick Multi Replace` (`vsc-macros.runQuickReplace`): その場で入力した置換ルールを1回だけ実行
 - `Macros: Create Macro From Replacements` (`vsc-macros.createMacro`): 入力した置換ルールをマクロとして保存
@@ -61,23 +58,8 @@
 ]
 ```
 
-## セットアップとデバッグ
-1. `npm install`
-2. `npm run compile`
-3. VS Code でこのフォルダを開き、`F5` で拡張機能デバッグを開始  
-   ※ `npm` が無い環境では `out/extension.js` をそのまま利用できます。
-
-配布する場合は `package.json` の `publisher` を自分の発行者名に置き換えてください。
-
-## テスト
-- `npm test` で `applySteps` の動作をカバーする簡易テストを実行（`vitest`）。
-
 ## トラブルシュート
 - コマンドが見つからない: VS Code ウィンドウを再読み込み（Cmd/Ctrl+Shift+P → Reload Window）。
 - エディタが無い: コマンド実行時にファイルオープンダイアログを出します。
 
-## リリース手順
-1. `npm install && npm run compile`
-2. `npx vsce package` で `.vsix` 作成
-3. VS Code で `.vsix` をインストールして動作確認
-4. 問題なければ `npx vsce publish` で公開
+開発やビルド、配布手順については `DEVELOPMENT.md` を参照してください。

@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.1.3
+- README をユーザー向け情報に絞り、開発手順を `DEVELOPMENT.md` に分離
+
 ## 0.1.2
 - VS Code メニュー/コンテキストのアイコンを追加（マクロ作成/適用/編集/削除、Import/Export）
 - 拡張アイコンを VSCE 対応の PNG に変更

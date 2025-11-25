@@ -2,7 +2,7 @@
   "name": "vscode-replace-macros",
   "displayName": "ReplaceMacros for VS Code",
   "description": "Run chained string replacements as one macro action. Save, edit, reorder steps, and import/export via JSON.",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "publisher": "h-matsufuji9",
   "author": "h-matsufuji9",
   "repository": "https://github.com/h-matsufuji9/vscode-replace-macros",

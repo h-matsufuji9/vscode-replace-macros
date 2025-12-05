@@ -65,6 +65,36 @@ class MacroStore {
 function activate(context) {
     const macroStore = new MacroStore(context);
     const treeProvider = new MacroTreeProvider(macroStore);
+    const storageDir = context.globalStorageUri;
+    const settingsUri = vscode.Uri.joinPath(storageDir, 'macros-settings.json');
+    const writeSettingsFile = async (macros) => {
+        await vscode.workspace.fs.createDirectory(storageDir);
+        await vscode.workspace.fs.writeFile(settingsUri, Buffer.from(JSON.stringify({ macros }, null, 2), 'utf8'));
+    };
+    context.subscriptions.push(vscode.workspace.onDidSaveTextDocument(async (document) => {
+        if (document.uri.toString() !== settingsUri.toString()) {
+            return;
+        }
+        try {
+            const parsed = JSON.parse(document.getText());
+            const rawMacros = Array.isArray(parsed) ? parsed : parsed.macros;
+            if (!Array.isArray(rawMacros)) {
+                throw new Error('macros 配列が見つかりませんでした。');
+            }
+            const normalized = rawMacros
+                .map((item) => normalizeMacro(item))
+                .filter((item) => Boolean(item));
+            await macroStore.save(normalized);
+            treeProvider.refresh();
+            await writeSettingsFile(normalized);
+            vscode.window.showInformationMessage(`設定を保存しました (${normalized.length} マクロ)。`);
+        }
+        catch (error) {
+            const message = error instanceof Error ? error.message : 'Unknown error';
+            vscode.window.showErrorMessage(`設定の保存に失敗しました: ${message}`);
+            await writeSettingsFile(macroStore.all());
+        }
+    }));
     context.subscriptions.push(vscode.window.registerTreeDataProvider('vsc-macros.list', treeProvider));
     context.subscriptions.push(vscode.commands.registerCommand('vsc-macros.runQuickReplace', async () => {
         const editor = await getActiveEditorOrPrompt();
@@ -211,6 +241,10 @@ function activate(context) {
             const message = error instanceof Error ? error.message : 'Unknown error';
             vscode.window.showErrorMessage(`インポートに失敗しました: ${message}`);
         }
+    }), vscode.commands.registerCommand('vsc-macros.openSettingsJson', async () => {
+        await writeSettingsFile(macroStore.all());
+        const document = await vscode.workspace.openTextDocument(settingsUri);
+        await vscode.window.showTextDocument(document, { preview: false });
     }), vscode.commands.registerCommand('vsc-macros.exportMacros', async () => {
         const macros = macroStore.all();
         if (!macros.length) {
